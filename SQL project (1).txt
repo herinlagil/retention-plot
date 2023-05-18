@@ -1,0 +1,4 @@
+1. Given an Order Table with the schema (id, user_id, total, created). Write a SQL Query to create a retention plot. The format for the raw data and output are given.  Refer to Q1.xlsx file
+
+
+Week Start Date is the 1st Week in which the User_Id Placed the order, Week 0 is Unique User ids who placed their 1st Order in this week. Out of those ids, Week 1 is unique users who placed an order in 1st Week + 1, Then Week 2 is 1st Week + 2 and so on till Week 10.

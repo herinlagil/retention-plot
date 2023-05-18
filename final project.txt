@@ -1,0 +1,59 @@
+-- CREATE table Q1
+-- (id BIGINT,
+-- userid BIGINT,
+-- total INT,
+-- created DATE 
+-- );
+
+-- copy Q1 from 'C:\Users\Smile\Desktop\Q1.csv' with csv HEADER;
+
+-- select * from Q1 ;
+
+******************************************************************************************************
+-- drop table if exists grouped ;
+-- create table grouped as 
+-- select userid, created from Q1 
+-- group by userid,created 
+-- order by 1;
+
+-- select * from grouped ;
+
+******************************************************************************************************
+-- drop table if exists week;
+-- create table week as 
+-- select userid, total, created, date(date_trunc('week',created)) as week_start from Q1 ;
+
+-- select * from week;
+
+******************************************************************************************************
+-- drop table if exists minweek;
+-- create table minweek as 
+-- select userid, min(week_start) from week 
+-- group by userid 
+-- order by min 
+
+-- select * from minweek
+-- order by userid asc ;
+
+******************************************************************************************************
+-- drop table if exists final;
+-- create table final as 
+-- select *,(created-min)/7  as weekdiff from grouped join minweek using(userid);
+
+-- select * from final
+-- order by min,weekdiff;
+******************************************************************************************************
+-- select min ,
+--       count(distinct case when weekdiff=0 then userid end) as week0,
+--       count(distinct  case when weekdiff=1 then userid end) as week1,
+--       count(distinct  case when weekdiff=2 then userid end) as week2,
+--       count(distinct  case when weekdiff=3 then userid end) as week3,
+--       count(distinct  case when weekdiff=4 then userid end) as week4,
+--       count(distinct  case when weekdiff=5 then userid end) as week5,
+--       count(distinct  case when weekdiff=6 then userid end) as week6,
+--       count(distinct  case when weekdiff=7 then userid end) as week7,
+--       count(distinct  case when weekdiff=8 then userid end) as week8,
+--       count(distinct  case when weekdiff=9 then userid end) as week9,
+--       count(distinct  case when weekdiff=10 then userid end) as week10
+--  from final 
+--    group by min
